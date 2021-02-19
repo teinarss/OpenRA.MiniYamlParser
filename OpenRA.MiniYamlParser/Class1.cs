@@ -335,8 +335,7 @@ namespace OpenRA.MiniYamlParser
 							$"{n.Location}: Parent type `{n.Value.Value}` not found");
 
 					if (inherited.ContainsKey(n.Value.Value))
-						throw new YamlException("{0}: Parent type `{1}` was already inherited by this yaml tree at {2} (note: may be from a derived tree)"
-							.F(n.Location, n.Value.Value, inherited[n.Value.Value]));
+						throw new YamlException($"{n.Location}: Parent type `{n.Value.Value}` was already inherited by this yaml tree at {inherited[n.Value.Value]} (note: may be from a derived tree)");
 
 					inherited.Add(n.Value.Value, n.Location);
 					foreach (var r in ResolveInherits(n.Key, parent, tree, inherited))
